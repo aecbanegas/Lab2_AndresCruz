@@ -203,7 +203,7 @@ void permutas(){
 	string pal;
 	cout<<"Ingrese una frase o combinacion de letras sin repetirlas :"<<endl;	
 	cin>>pal;
-	while(valperm(pal)==false){
+	while(valperm(pal)){
 		cout<<"Ingrese una frase o combinacion de letras sin repetirlas :"<<endl;
 	        cin>>pal;
 	}
@@ -212,28 +212,54 @@ void permutas(){
 }
 bool valperm(string pal){
 	for(int i=0;i<pal.length();i++){
-		for(int j=i;j<pal.length();j++){
-			if(pal[i]==pal[j]){
-				return false;
+		if(i!=pal.length()-1){
+			for(int j=i+1;j<pal.length();j++){
+				if(pal[i]==pal[j]){
+					return true;
+				}
 			}
 		}
 	}
-	return true;
+	return false;
 }
 void permpal(string pal){
 	for(int i=0;i<pal.length();i++){
-		for(int h=0;h<pal.length();j++){
-			for(int j=0;j<pal.length();j++){
-				if(j==0){
-					cout<<pal[i];
+		if(i!=pal.length()-1){
+			for(int h=i+1;h<pal.length();h++){
+				for(int j=0;j<pal.length();j++){					
+					if(j==0){
+						cout<<pal[i];
+						cout<<pal[h];
+					}
+					if(pal[i]!=pal[j]&&pal[h]!=pal[j]){
+						cout<<pal[j];
+					}
 				}
-				if(pal[i]!=pal[j]){
-					cout<<pal[j];
-				}
-			}
-			cout<<endl;
+				cout<<endl;
+			}//fin for
+		}else{
+				for(int j=0;j<pal.length();j++){
+                                        if(j==0){
+                                                cout<<pal[i];
+                                        }
+                                        if(pal[i]!=pal[j]){
+                                                cout<<pal[j];
+                                        }
+                                }//fin for
+                                cout<<endl;
+
 		}
-		/*for(int j=pal.length()-1;j>=0;j--){
+		/*for(int j=0;j<pal.length();j++){
+                                        if(j==0){
+                                                cout<<pal[i];
+                                        }
+                                        if(pal[i]!=pal[j]){
+                                                cout<<pal[j];
+                                        }
+                                }
+                                cout<<endl;
+                        
+		for(int j=pal.length()-1;j>=0;j--){
                         if(j==pal.length()-1){
                                 cout<<pal[i];
                         }
