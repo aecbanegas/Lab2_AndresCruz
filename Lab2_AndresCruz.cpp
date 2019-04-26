@@ -8,6 +8,8 @@ using std::endl;
 
 void Captcha();
 bool validacioncaptcha(string);
+void numperf();
+bool valnumperf(int);
 
 int main(){
 	int opcm=0;
@@ -30,6 +32,9 @@ int main(){
 		}//fin while validacion
 		if(opcm==1){
 			Captcha();
+		}
+		if(opcm==2){
+			numperf();
 		}
 	}//fin while menu
 	return 0;
@@ -122,4 +127,69 @@ bool validacioncaptcha(string captcha){
                                         return true;
                                 }
 
+}
+void numperf(){
+	int num;
+	cout<<"Ingrese un numero para verificar si este es un numero perfecto: "<<endl;
+	cin>>num;
+	while(!isdigit(num)&&num<1){
+		cout<<"Ingrese un numero para verificar si este es un numero perfecto: "<<endl;
+	        cin>>num;
+	}
+	if(num==1){
+		cout<<"EL numero es perfecto! "<<"Factor= 1 "<<endl;
+	}else{
+		if(valnumperf(num)){
+			cout<<"El numero es perfecto! "<<endl;
+		}else{
+			cout<<"El numero no es perfecto! "<<endl;
+			if(num<6){
+				cout<<"No existe un numero perfecto anterior. "<<endl;
+			}else{
+				for(int i=num;i>0;i--){
+					if(valnumperf(i)){
+						cout<<"El anterior numero perfecto es: "<<i<<endl;
+					}
+				}
+			}
+		}
+		
+	}
+}
+bool valnumperf(int num){
+	int arreglo[num];
+                for(int i=1;i<num;i++){
+                        if(num%i==0){
+                                arreglo[i-1]=i;
+                        }else{
+                                arreglo[i-1]=-1;
+                        }
+                }//fin for
+		arreglo[num-1]=-1;
+		int suma=0;
+	//	cout<<"Factores: "<<endl;
+		for(int i=0;i<num;i++){
+			if(arreglo[i]!=-1)
+			{
+	//			cout<<arreglo[i]<<" ;  ";
+				suma+=arreglo[i];
+			}
+		}
+	//	cout<<endl<<"la suma de los factores es: "<<suma<<endl;
+		if(num==suma){
+			int suma=0;
+	                cout<<"Factores: "<<endl;
+        	        for(int i=0;i<num;i++){
+                        if(arreglo[i]!=-1)
+                        {
+                                cout<<arreglo[i]<<" ;  ";
+                                suma+=arreglo[i];
+                        }
+               		 }
+	                cout<<endl<<"la suma de los factores es: "<<suma<<endl;
+
+			return true;
+		}else{
+			return false;
+		}
 }
