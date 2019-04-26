@@ -10,6 +10,9 @@ void Captcha();
 bool validacioncaptcha(string);
 void numperf();
 bool valnumperf(int);
+void permutas();
+bool valperm(string);
+void permpal(string);
 
 int main(){
 	int opcm=0;
@@ -35,6 +38,9 @@ int main(){
 		}
 		if(opcm==2){
 			numperf();
+		}
+		if(opcm==3){
+			permutas();
 		}
 	}//fin while menu
 	return 0;
@@ -192,4 +198,50 @@ bool valnumperf(int num){
 		}else{
 			return false;
 		}
+}
+void permutas(){
+	string pal;
+	cout<<"Ingrese una frase o combinacion de letras sin repetirlas :"<<endl;	
+	cin>>pal;
+	while(valperm(pal)==false){
+		cout<<"Ingrese una frase o combinacion de letras sin repetirlas :"<<endl;
+	        cin>>pal;
+	}
+	cout<<"Las combinaciones posibles son: "<<endl;
+	permpal(pal);
+}
+bool valperm(string pal){
+	for(int i=0;i<pal.length();i++){
+		for(int j=i;j<pal.length();j++){
+			if(pal[i]==pal[j]){
+				return false;
+			}
+		}
+	}
+	return true;
+}
+void permpal(string pal){
+	for(int i=0;i<pal.length();i++){
+		for(int h=0;h<pal.length();j++){
+			for(int j=0;j<pal.length();j++){
+				if(j==0){
+					cout<<pal[i];
+				}
+				if(pal[i]!=pal[j]){
+					cout<<pal[j];
+				}
+			}
+			cout<<endl;
+		}
+		/*for(int j=pal.length()-1;j>=0;j--){
+                        if(j==pal.length()-1){
+                                cout<<pal[i];
+                        }
+                        if(pal[i]!=pal[j]){
+                                cout<<pal[j];
+                        }
+                }
+
+		cout<<endl;*/
+	}
 }
