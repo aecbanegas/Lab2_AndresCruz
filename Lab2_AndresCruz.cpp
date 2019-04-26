@@ -16,7 +16,8 @@ int main(){
 			<<"1. Captcha"<<endl
 			<<"2. Numeros Perfectos"<<endl
 			<<"3. Permutaciones"<<endl
-			<<"4. Salir"<<endl;
+			<<"4. Salir"<<endl
+			<<"Ingrese una opcion: "<<endl;
 		cin>>opcm;
 		while(opcm<1||opcm>4){
 			cout<<"Menu Principal"<<endl
@@ -38,13 +39,14 @@ void Captcha(){
 	//Ejercicio numero 1 Captcha
 	int opcm=0;
 	while(opcm!=3){
-	cout<<"Menu Principal"<<endl
+	cout<<"Menu Ejercicio"<<endl
                         <<"1. Suma"<<endl
                         <<"2. Pasos"<<endl
-                        <<"3. Salir"<<endl;
+                        <<"3. Salir"<<endl
+			<<"Ingrese una opcion: "<<endl;
                 cin>>opcm;
 		while(opcm<1||opcm>3){
-                        cout<<"Menu Principal"<<endl
+                        cout<<"Menu Ejercicio"<<endl
                         <<"1. Suma"<<endl
                         <<"2. Pasos"<<endl
                         <<"3. Salir"<<endl
@@ -75,7 +77,35 @@ void Captcha(){
 			cout<<"La suma es: "<<suma<<endl;			
 		}//fin if
 		if(opcm==2){
-				
+			string captcha;
+                        cout<<"Ingrese una serie captcha: "<<endl;
+                        cin>>captcha;
+                        cout<<"Es verdad: "<<(captcha.length()%2==0)<<endl;
+			while(bool noes=validacioncaptcha(captcha)&&(captcha.length()%2!=0)){
+                                cout<<"Ingrese una serie captcha de manera correcta y que sea par: "<<endl;
+                                cin>>captcha;
+                        }//fin validacion
+                        int suma=0;
+			int mitad=captcha.length()/2;
+			int inicio=0;
+                        for(int i=0;i<captcha.length();i++){
+                                if(i<mitad){
+                                        if(captcha[i]==captcha[i+mitad]){
+                                                suma+=captcha[i]-48;
+					//	cout << "indice " << i << " numero " << captcha[i] << " suma " << suma << "SUMO"  << endl;					
+                                        }
+					//cout << "indice " << i << " numero " << captcha[i] << " suma " << suma << " NO SUMO"<<endl;
+                                }else{
+                                        if(captcha[i]==captcha[inicio]){
+                                                suma+=captcha[i]-48;
+					//	cout << "indice " << i << " numero " << captcha[i] << " suma " << suma << " SUMO" << endl;
+                                        }
+					//cout << "indice " << i << " numero " << captcha[i] << " suma " << suma << " NO SUMO" << endl;
+					inicio++;
+                                }
+                        }//fin for
+                        cout<<"La suma es: "<<suma<<endl;
+
 		}//fin if
 	}//fin while
 }
