@@ -224,7 +224,7 @@ bool valperm(string pal){
 }
 void permpal(string pal){
 	for(int i=0;i<pal.length();i++){
-		if(i!=pal.length()-1){
+		if(i!=pal.length()-1&&pal.length()>2){
 			for(int h=i+1;h<pal.length();h++){
 				for(int j=0;j<pal.length();j++){					
 					if(j==0){
@@ -237,7 +237,8 @@ void permpal(string pal){
 				}
 				cout<<endl;
 			}//fin for
-		}else{
+		}
+		if(pal.length()<=2){
 				for(int j=0;j<pal.length();j++){
                                         if(j==0){
                                                 cout<<pal[i];
